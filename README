@@ -12,8 +12,7 @@ EmailSanitizor.options[:base_email] = 'eric@example.com'
 
 usage:
 class UserMailer < ActionMailer::Base
-  include EmailSanitizor
-  EmailSanitizor :send_notification, send_bulk_notifications 
+  include EmailSanitizor 
 
   def  send_notification(user)
     @recipients = user.email
@@ -22,6 +21,9 @@ class UserMailer < ActionMailer::Base
   def  send_bulk_notifications(company)
     @recipients = company.emails
   end
+
+  EmailSanitizor :send_notification, send_bulk_notifications
+
 end
 
 Copyright (c) 2009 [Eric Zou], released under the MIT license
