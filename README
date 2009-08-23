@@ -1,0 +1,27 @@
+EmailSanitizor
+==============
+
+EmailSanitizor alters email addresses to your pre-designated email address right before it is delivered,  so you won't accidently send out testing emails
+to your customers. 
+
+Example
+=======
+
+add your designated email address to base_email in your config file
+EmailSanitizor.options[:base_email] = 'eric@example.com'
+
+usage:
+class UserMailer < ActionMailer::Base
+  include EmailSanitizor
+  EmailSanitizor :send_notification, send_bulk_notifications 
+
+  def  send_notification(user)
+    @recipients = user.email
+  end
+   
+  def  send_bulk_notifications(company)
+    @recipients = company.emails
+  end
+end
+
+Copyright (c) 2009 [Eric Zou], released under the MIT license
