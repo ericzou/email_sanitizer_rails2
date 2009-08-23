@@ -6,7 +6,7 @@ module  EmailSanitizor
   def self.options
     @options ||= {
       :base_email => 'default@example.com',
-      :exclud_emails =>[]
+      :exclude_emails =>[]
     }  
   end
   
