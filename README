@@ -7,7 +7,8 @@ to your customers.
 Example
 =======
 
-add your designated email address to base_email in your config file
+add your designated email address to base_email in your development.rb file
+
 EmailSanitizor.options[:base_email] = 'eric@example.com'
 
 usage:
@@ -22,8 +23,7 @@ class UserMailer < ActionMailer::Base
     @recipients = company.emails
   end
 
-  EmailSanitizor :send_notification, send_bulk_notifications
-
+  EmailSanitizor :send_notification, send_bulk_notifications if Rails.env.development? || Rails.env.test?
 end
 
 Copyright (c) 2009 [Eric Zou], released under the MIT license

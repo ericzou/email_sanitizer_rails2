@@ -82,12 +82,13 @@ class EmailSanitizorTest < ActiveSupport::TestCase
      assert_equal ["eric@example.com", "joe@example.com", "bill@billbob.com", "marry@marrysilly.com"], xxx.instance_variable_get(:@recipients)
   end
    
-  test "should not sanitize emais if domain matches base_email domain" do
-      EmailSanitizor.options[:base_email] = "joe@example.com"
-      EmailSanitizor.options[:skip_if_domain_match] = true
-  end
-  
-  test "should sanitize of emails are Array" do 
-  end  
+  # todo 
+  # test "should not sanitize emais if domain matches base_email domain" do
+  #     EmailSanitizor.options[:base_email] = "joe@example.com"
+  #     EmailSanitizor.options[:skip_if_domain_match] = true
+  # end
+  # 
+  # test "should sanitize if emails are Array" do 
+  # end  
 end
 
