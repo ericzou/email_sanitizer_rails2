@@ -9,16 +9,16 @@ module  EmailSanitizor
       :exclude_emails =>[]
     }  
   end
-  
-  
+
   def self.included(base)
     base.extend(ClassMethods)
   end
   
   
   module ClassMethods
-    
+  
     def sanitize_email(*syms)
+      syms = self.instance_methods - self.superclass.instance_methods if syms.empty?
       syms.each do |sym|
           self.class_eval do
             alias_method "org_#{sym}", sym

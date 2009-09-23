@@ -37,7 +37,7 @@ class EmailSanitizorTest < ActiveSupport::TestCase
       @recipients  = args[0].to if args[0].respond_to?(:to)
     end
     
-    sanitize_email :send_notification
+    sanitize_email
   
   end
   
