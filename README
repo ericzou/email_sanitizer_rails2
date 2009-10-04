@@ -22,8 +22,8 @@ class UserMailer < ActionMailer::Base
     @recipients = company.emails
   end
   
-  EmailSanitizor if Rails.env.development? || Rails.env.test?
-  # or EmailSanitizor :send_notification, send_bulk_notifications for individual methods
+  sanitize_email if Rails.env.development? || Rails.env.test?
+  # or sanitize_email :send_notification, send_bulk_notifications for individual methods
 end
 
 Copyright (c) 2009 [Eric Zou], released under the MIT license
