@@ -65,6 +65,15 @@ class EmailSanitizorTest < ActiveSupport::TestCase
      assert_equal ['joe+joe_at_email.com@example.com', 'joe+marry_at_google.com@example.com', 'joe+jack_at_example.com@example.com'], xxx.instance_variable_get(:@recipients) 
   end
    
+  test "should sanitize if emails are Array" do 
+     EmailSanitizor.options[:base_email] = "joe@example.com"
+     msg = MockMessage.new
+     msg.to = %w(eric@email.com jack@example.com mary@google.com john@example.com)
+     xxx = MockUserMailer.deliver_send_notification(msg)
+     assert_equal ["joe+eric_at_email.com@example.com", "joe+jack_at_example.com@example.com", 
+       "joe+mary_at_google.com@example.com", "joe+john_at_example.com@example.com"], xxx.instance_variable_get(:@recipients)
+  end 
+  
   test "should sanitize emails for create_xxx_methods" do 
     EmailSanitizor.options[:base_email] = "joe@example.com"
     joe = MockUser.new
@@ -88,7 +97,5 @@ class EmailSanitizorTest < ActiveSupport::TestCase
   #     EmailSanitizor.options[:skip_if_domain_match] = true
   # end
   # 
-  # test "should sanitize if emails are Array" do 
-  # end  
 end
 

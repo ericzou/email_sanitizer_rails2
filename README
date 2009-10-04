@@ -1,8 +1,7 @@
 EmailSanitizor
 ==============
 
-EmailSanitizor alters email addresses to your pre-designated email address right before it is delivered,  so you won't accidently send out testing emails
-to your customers. 
+EmailSanitizor alters email addresses to your pre-designated email address right before it is delivered,  so you won't accidently send out testing emails to your customers. It works by re-route the email back to your email address - for example: email sent to joe@example.com will change to "your_name"+joe_at_example.com@yourdomain.com 
 
 Example
 =======
@@ -22,8 +21,9 @@ class UserMailer < ActionMailer::Base
   def  send_bulk_notifications(company)
     @recipients = company.emails
   end
-
-  EmailSanitizor :send_notification, send_bulk_notifications if Rails.env.development? || Rails.env.test?
+  
+  EmailSanitizor if Rails.env.development? || Rails.env.test?
+  # or EmailSanitizor :send_notification, send_bulk_notifications for individual methods
 end
 
 Copyright (c) 2009 [Eric Zou], released under the MIT license

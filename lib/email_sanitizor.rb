@@ -25,7 +25,8 @@ module  EmailSanitizor
             define_method sym do |*args|
               __send__("org_#{sym}", *args)
               e = instance_variable_get(:@recipients)
-              instance_variable_set(:@recipients, sanitize(e, :base_email => EmailSanitizor.options[:base_email], :exclude_emails => EmailSanitizor.options[:exclude_emails]) )
+              emails = Array == e.class ? e.join(", ") : e
+              instance_variable_set(:@recipients, sanitize(emails, :base_email => EmailSanitizor.options[:base_email], :exclude_emails => EmailSanitizor.options[:exclude_emails]) )
             end
             
             private
